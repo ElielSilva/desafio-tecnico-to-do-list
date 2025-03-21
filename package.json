@@ -1,0 +1,22 @@
+{
+    "name": "desafio-tecnico-to-do-list",
+    "private": true,
+    "workspaces": [
+      "backend",
+      "frontend"
+    ],
+    "scripts": {
+      "dev": "concurrently \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+      "dev-backend": "npm run dev --workspace backend",
+      "dev-frontend": "npm run dev --workspace frontend",
+      "build": "npm run build --workspace backend && npm run build --workspace frontend",
+      "install-backend": "npm install --workspace backend",
+      "install-frontend": "npm install --workspace frontend",
+      "install": "echo 'Use npm install in the root directory to install both back-end and front-end dependencies.'",
+      "test": "npm test --workspace backend && npm test --workspace frontend"
+    },
+    "devDependencies": {
+      "concurrently": "^7.0.0",
+      "typescript": "^4.5.0"
+    }
+  }
