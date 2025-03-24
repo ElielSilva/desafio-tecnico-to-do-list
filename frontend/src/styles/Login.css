@@ -1,0 +1,43 @@
+#form-login {
+  /* background-color: #1a1a1a; Cor de fundo do formulário (escura) */
+  position: absolute; /* O formulário será posicionado absolutamente em relação ao body */
+  top: 50%; /* Coloca o formulário no meio da tela verticalmente */
+  left: 50%; /* Coloca o formulário no meio da tela horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta o formulário para que ele seja centralizado corretamente */
+  border-radius: 8px;
+  padding: 1.5rem; /* Adicionando espaçamento interno */
+  max-width: 550px;
+  min-width: 550px;
+  width: 100%; /* O formulário ocupa toda a largura disponível até 600px */
+  height: 60%;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.1);
+}
+
+#title-login {
+  text-align: center;
+}
+
+#label-login-password {
+  display: flex;
+}
+
+#label-login-password {
+  display: flex;
+
+}
+
+#buttons-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#button-login {
+  display: flex;
+  justify-content: center;
+}
+
+#button-register {
+  display: flex;
+  justify-content: center;
+}
