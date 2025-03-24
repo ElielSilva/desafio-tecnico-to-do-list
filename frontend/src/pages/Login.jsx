@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { RequestLogin } from '../utils/RequestsAPI';
 
 const Login = () => {
@@ -7,6 +8,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const isEmailValid = emailRegex.test(email);
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
@@ -62,6 +64,7 @@ const Login = () => {
           </div>
         </label>
 
+
         <div id="buttons-login" className="flex justify-between mt-6">
           <button
             type="button"
@@ -72,9 +75,10 @@ const Login = () => {
           </button>
           <button
             type="button"
+            onClick={() => navigate('/register')}
             className="w-full py-2 border-2 border-gray-300  rounded-lg hover:bg-gray-100 transition duration-300"
           >
-            Registrar-se
+            Ir para Registrar-se
           </button>
         </div>
       </form>
