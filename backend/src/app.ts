@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
+import cors from 'cors'; 
 
-import { authRouters } from './routers/routers.js' 
+import { authRouters, userRouters, taskRouters } from './routers/routers.js' 
 
 import httpErrorMiddleware from './middlewares/http.error.middleware.js'
 
@@ -13,10 +14,14 @@ class App {
     this.config();
     
     this.app.get('/coffee', (req: Request, res: Response) => {
-      res.json({ response: "coffee" });
+      res.status(418).json({ response: "coffee" });
     });
 
     this.app.use('/auth', authRouters);
+
+    this.app.use('/users', userRouters);
+
+    this.app.use('/tasks', taskRouters);
     
     this.app.use(httpErrorMiddleware);
   }
@@ -28,6 +33,14 @@ class App {
       res.header('Access-Control-Allow-Headers', '*');
       next();
     };
+
+    const corsOptions = {
+      origin: 'http://localhost:5173',
+      methods: ['GET', 'POST', 'DELETE', 'OPTIONS', 'PUT', 'PATCH'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    };
+
+    this.app.use(cors(corsOptions));
 
     this.app.use(express.json());
     this.app.use(accessControl);

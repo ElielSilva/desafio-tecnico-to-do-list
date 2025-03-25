@@ -12,8 +12,10 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
+      console.log("FOI")
       const response = await RequestLogin({ email, password });
-      localStorage.setItem('authorization', JSON.stringify(response));
+      localStorage.setItem('Authorization', JSON.stringify(response.token));
+      navigate('/home')
     } catch (error) {
       console.error(error);
     }
@@ -68,7 +70,7 @@ const Login = () => {
         <div id="buttons-login" className="flex justify-between mt-6">
           <button
             type="button"
-            onClick={handleLogin}
+            onClick={() => handleLogin()}
             className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300"
           >
             Entrar

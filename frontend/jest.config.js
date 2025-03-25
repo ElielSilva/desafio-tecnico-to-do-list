@@ -1,9 +1,9 @@
 // jest.config.js
 export {
-  preset: 'vite',  // Define o Vite como preset de testes
-  testEnvironment: 'jsdom',  // Simula o ambiente de navegador
+  preset: 'vite',
+  testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.jsx?$': 'esbuild-jest',  // Usa o esbuild para compilar arquivos JavaScript e JSX
+    '^.+\\.jsx?$': 'esbuild-jest',
   },
-  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],  // Configura o jest-dom para asserções mais legíveis
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 };

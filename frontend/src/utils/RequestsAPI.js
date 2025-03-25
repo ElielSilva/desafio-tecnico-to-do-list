@@ -42,4 +42,89 @@ const RequestRegister = async (RequestBody) => {
   }
 };
 
-export { RequestLogin, RequestRegister };
+const RequestAllTasks = async (RequestBody) => {
+  try {
+    const token = JSON.parse(localStorage.getItem('Authorization'));
+    const response = await fetch('http://localhost:3001/tasks/all', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(RequestBody),
+    });
+
+    const result = await response.json();
+    // if (response.status === 401) {
+    //   localStorage.clear();
+
+    //   throw new Error('Login failed');
+    // }
+
+    
+    return result;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+};
+
+const RequestGenerics = async ( Method, Body, Path) => {
+  try {
+    const token = JSON.parse(localStorage.getItem('Authorization'));
+    console.log(token)
+    const response = await fetch(`http://localhost:3001/${Path}`, {
+      method: Method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(Body),
+    });
+
+    // if (!response.ok) {
+    //   throw new Error('Login failed');
+    // }
+
+    if (response.status === 403) {
+      throw new Error('Acesso proibido: você não tem permissão para acessar este recurso.');
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error; 
+  }
+};
+
+const RequestGenericsWithId = async ( Method, Body, Path, ParamsId) => {
+  try {
+    const token = JSON.parse(localStorage.getItem('Authorization'));
+    console.log(token)
+    const response = await fetch(`http://localhost:3001/${Path}/${ParamsId}`, {
+      method: Method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(Body),
+    });
+
+    // if (!response.ok) {
+    //   throw new Error('Login failed');
+    // }
+
+    if (response.status === 403) {
+      throw new Error('Acesso proibido: você não tem permissão para acessar este recurso.');
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error; 
+  }
+};
+
+export { RequestLogin, RequestRegister, RequestAllTasks, RequestGenerics, RequestGenericsWithId };

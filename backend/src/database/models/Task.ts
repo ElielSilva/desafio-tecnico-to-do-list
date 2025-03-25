@@ -19,9 +19,9 @@ Task.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    status: {
-      type: DataTypes.ENUM('Pendente', 'Concluído'),
-      defaultValue: 'Pendente',
+    completed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
       allowNull: false,
     },
     userId: {
