@@ -13,7 +13,7 @@ export class TokenService {
   }
 
   generateToken(userId: number, email:string): string {
-    return jwt.sign({ id: userId, email }, JWT_SECRET, { expiresIn: '1h' });
+    return jwt.sign({ id: userId, email }, JWT_SECRET, { expiresIn: '12h' });
   }
 
   verifyToken(token: string): string | jwt.JwtPayload {

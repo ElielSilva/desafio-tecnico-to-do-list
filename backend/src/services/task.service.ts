@@ -33,9 +33,31 @@ export default class TaskService {
     return tasks;
   }
 
+  public async updateStatusById(userId: any, taskId: string): Promise<any> {
+    const task = await Task.findOne({where: {userId, id: taskId}});
+    
+    if (!task) {
+      throw new HttpException(404, 'Task not found');
+    }
+    const newStatus = !task.completed;
+
+    await task.update({ completed: newStatus });
+    await task.save();
+  }
+
+  public async updateById(userId: any, taskId: string, body: {title: string, description: string}): Promise<any> {
+    const tasks = await Task.findOne({where: {userId, id: taskId}});
+    console.log("updateStatusById service");
+    if (!tasks) {
+      throw new HttpException(404, 'Task not found');
+    }
+    await tasks.update(body);
+    
+    await tasks.save();
+  }
+
   public async deleteById(userId: any, taskId: string): Promise<any> {
     const tasks = await Task.destroy({where: {userId, id: taskId}});
-    console.log(tasks);
     return tasks;
   }
 }

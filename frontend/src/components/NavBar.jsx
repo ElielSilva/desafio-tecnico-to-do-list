@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <img
-            src="caminho/para/foto.jpg"
+            src="https://st.depositphotos.com/2101611/3925/v/450/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg"
             alt="Foto do usuário"
             className="w-8 h-8 rounded-full"
           />

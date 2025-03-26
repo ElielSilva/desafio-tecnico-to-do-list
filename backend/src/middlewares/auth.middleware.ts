@@ -8,8 +8,8 @@ interface RequestWithUser extends Request {
 
 const authMiddleware = (req: RequestWithUser, res: Response, next: NextFunction) => {
   const token = req.headers.authorization?.split(' ')[1];
-  console.log('passou no authMiddleware')
-  console.log(token)
+  // console.log('passou no authMiddleware')
+  // console.log(token)
   if (!token) {
     throw new HttpException(403, 'Token is required');
   }

@@ -29,6 +29,20 @@ const taskRouters:express.Router = express.Router();
 
 taskRouters.use(express.json());
 
+taskRouters.patch('/update/status/:taskId',
+  authMiddleware,
+  
+  (req, res, next) => {
+    console.log('foi'),
+    taskController.updateStatusById(req, res, next)
+  }
+);
+
+taskRouters.patch('/update/:taskId',
+  authMiddleware,
+  (req, res, next) => taskController.updateById(req, res, next)
+);
+
 taskRouters.post('/create',
   authMiddleware,
   (req, res, next) => taskController.createTask(req, res, next)

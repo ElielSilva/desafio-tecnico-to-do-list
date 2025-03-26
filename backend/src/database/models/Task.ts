@@ -2,7 +2,14 @@ import { Model, DataTypes } from 'sequelize';
 import db from './sequelize.js';
 import { User } from './User.js';
 
-export class Task extends Model {}
+export class Task extends Model {
+  declare id: number;
+  declare title: string;
+  declare description: string;
+  declare completed: string;
+  declare userId: number;
+  declare updatedAt: Date;
+}
 
 Task.init(
   {
