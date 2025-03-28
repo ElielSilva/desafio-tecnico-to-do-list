@@ -22,7 +22,6 @@ const Navbar = () => {
         </div>
         
         <div className="flex items-center space-x-4">
-          <a href="/perfil" className="text-white">Perfil</a>
           <button
             onClick={() => logout()}
             className="text-white"

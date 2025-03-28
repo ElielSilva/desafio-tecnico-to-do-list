@@ -15,15 +15,22 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       await RequesInitialtAllTask();
-      // setTasks(response);
+      const user = await RequestGenerics('GET', {}, 'users',)
+      setUser(user);
     }
     fetchData();
   }, []);
 
   const RequesInitialtAllTask = async () => {
-    const response = await RequestAllTasks();
-    setTasks(response);
-    console.log(response);
+    try {
+      const response = await RequestAllTasks();
+      setTasks(response);
+      console.log(response);
+    } catch (error) {
+      if (error) {
+        console.error(error)
+      }
+    }
   } 
 
   // const handleAddTask = async () => {
