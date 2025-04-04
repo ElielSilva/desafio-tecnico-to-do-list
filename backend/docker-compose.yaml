@@ -1,24 +1,3 @@
-# version: '3.8'
-
-# services:
-#   database:
-#     image: mysql:8.0
-#     container_name: mysql_todo
-#     environment:
-#       - MYSQL_ROOT_PASSWORD=123456
-#       - MYSQL_DATABASE=databaseToDoList
-#       - MYSQL_USER=root
-#       - MYSQL_PASSWORD=123456
-#     ports:
-#       - "3306:3306"
-#     volumes:
-#       - mysql_data:/var/lib/mysql
-#     networks:
-#       - app_network
-
-# volumes:
-#   mysql_data:
-
 version: "3.8"
 
 services:

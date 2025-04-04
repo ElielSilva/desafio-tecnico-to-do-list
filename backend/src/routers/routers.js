@@ -1,12 +1,12 @@
-import * as express from 'express';
+const express = require('express');
 
-import AuthController from '../controllers/auth.controller.js';
-import UserController from '../controllers/user.controller.js';
-import TaskController from '../controllers/task.controller.js';
-import authMiddleware from '../middlewares/auth.middleware.js';
+const authController = require('../controllers/auth.controller.js');
+const userController = require('../controllers/user.controller.js');
+const taskController = require('../controllers/task.controller.js');
+const authMiddleware = require('../middlewares/auth.middleware.js');
 
-const authController = new AuthController();
-const authRouters:express.Router = express.Router();
+// const authController = new AuthController();
+const authRouters = express.Router();
 
 authRouters.use(express.json());
 
@@ -14,8 +14,8 @@ authRouters.post('/register', (req, res, next) => authController.register(req, r
 
 authRouters.post('/login', (req, res, next) => authController.login(req, res, next));
 
-const userController = new UserController();
-const userRouters:express.Router = express.Router();
+// const userController = new UserController();
+const userRouters = express.Router();
 
 userRouters.use(express.json());
 
@@ -24,8 +24,8 @@ userRouters.get('/',
   (req, res, next) => userController.findUserById(req, res, next)
 );
 
-const taskController = new TaskController();
-const taskRouters:express.Router = express.Router();
+// const taskController = new TaskController();
+const taskRouters = express.Router();
 
 taskRouters.use(express.json());
 
@@ -33,7 +33,6 @@ taskRouters.patch('/update/status/:taskId',
   authMiddleware,
   
   (req, res, next) => {
-    console.log('foi'),
     taskController.updateStatusById(req, res, next)
   }
 );
@@ -58,4 +57,4 @@ taskRouters.delete('/delete/:taskId',
   (req, res, next) => taskController.deleteById(req, res, next)
 );
 
-export { authRouters, userRouters, taskRouters };
+module.exports = { authRouters, userRouters, taskRouters };
