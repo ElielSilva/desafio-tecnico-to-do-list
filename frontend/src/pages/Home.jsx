@@ -6,17 +6,14 @@ import EditTaskForm from '../components/EditTaskForm';
 
 const Home = () => {
   const [tasks, setTasks] = useState([]);
-  const [user, setUser] = useState({ name: 'João Silva', photoUrl: 'url_da_foto.jpg' });
-  // const [ title, setTitle ] = useState('');
-  // const [ description, setDescription ] = useState('');
+  const [user, setUser] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [currentTask, setCurrentTask] = useState({ id: null, title: '', description: '' });
 
   useEffect(() => {
     async function fetchData() {
       await RequesInitialtAllTask();
-      const user = await RequestGenerics('GET', {}, 'users',)
-      setUser(user);
+      setUser(JSON.parse(localStorage.getItem('UserName')))
     }
     fetchData();
   }, []);
@@ -25,7 +22,6 @@ const Home = () => {
     try {
       const response = await RequestAllTasks();
       setTasks(response);
-      console.log(response);
     } catch (error) {
       if (error) {
         console.error(error)
@@ -40,7 +36,6 @@ const Home = () => {
 
   const handleEdit = (index) => {
     setCurrentTask(index);
-    console.log(currentTask);
     setIsEditing(true);
   };
 
@@ -56,10 +51,9 @@ const Home = () => {
   
   return(
     <>
-      <Navbar name={user.name} />
+      <Navbar name={user} />
       {isEditing
       ? 
-      // <p>{currentTask}</p>
       <EditTaskForm 
       infoTask={tasks[currentTask]} RequesInitialtAllTask={ RequesInitialtAllTask } setIsEditing={ setIsEditing }
       />
@@ -69,19 +63,29 @@ const Home = () => {
       <div className="bg-white p-4 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Minhas Tarefas</h2>
         <ul>
-          {tasks && tasks.map((task, index)=> (
+          
+          {!tasks.length ? 
+          <p className="text-sm text-gray-600 mt-1">Não há tarefas pra exibir</p> 
+          : tasks.map((task, index) => (
             <li
               key={task.id}
               className={`flex items-center justify-between p-2 mb-2 rounded-md ${
                 task.completed ? 'bg-green-100' : 'bg-yellow-100'
               }`}
             >
-              <span className={`flex-1 ${task.completed ? 'line-through' : ''}`}>
-                {task.title}
-              </span>
+              <div className="flex-1">
+                <span className={`block ${task.completed ? 'line-through' : ''}`}>
+                  {task.title}
+                </span>
+                {task.description && (
+                  <p className="text-sm text-gray-600 mt-1">
+                    {task.description}
+                  </p>
+                )}
+              </div>
               <div className="flex space-x-2">
                 <button
-                  onClick={() =>  handleStatus(task.id)}
+                  onClick={() => handleStatus(task.id)}
                   className={`ml-2 text-sm ${task.completed ? 'text-green-500' : 'text-yellow-500'}`}
                 >
                   {task.completed ? 'Concluída' : 'Pendente'}

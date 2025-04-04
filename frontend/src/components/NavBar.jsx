@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ name }) => {
   const navigate = useNavigate();
 
   const logout = () => {
@@ -18,7 +18,7 @@ const Navbar = () => {
             alt="Foto do usuário"
             className="w-8 h-8 rounded-full"
           />
-          <span className="text-white">name</span>
+          <span className="text-white">{name}</span>
         </div>
         
         <div className="flex items-center space-x-4">

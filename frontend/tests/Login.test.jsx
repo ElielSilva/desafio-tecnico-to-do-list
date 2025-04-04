@@ -9,6 +9,7 @@ vi.mock("../src/utils/RequestsAPI", () => ({
   RequestLogin: vi.fn().mockResolvedValue({ token: "mocked_token" }),
 }));
 
+
 describe('test componets login',() => {
   test('renders the email and password, labal and input fields', () => {
     render(

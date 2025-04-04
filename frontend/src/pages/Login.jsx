@@ -14,6 +14,7 @@ const Login = () => {
     try {
       const response = await RequestLogin({ email, password });
       localStorage.setItem('Authorization', JSON.stringify(response.token));
+      localStorage.setItem('UserName', JSON.stringify(response.name));
       navigate('/home')
     } catch (error) {
       console.error(error);
